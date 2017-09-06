@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    <title>TTT培训</title>
+    <link rel="stylesheet" href="css/tuniu.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/foot.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flexisel.js?v=1.2"></script>
+    <script src="js/index.js?b=23.2"></script>
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<style type="text/css">
+		html,body,div,ul,li,span,a{margin: 0px;padding: 0px;font-family: "Microsoft YaHei";font-size: 12px;}
+		body {background: none;}
+		a{color:#404040;text-decoration: none;}
+		.show_class{background-color: #B79B83;color: white;border-radius:10px;}
+		.head_part{width:100%;height: 81px;min-width: 1300px;}
+		.head_part div img{float:left;height: 100%;margin-left: 20px;margin-top: 13px;}
+		/**
+		.head_part >div:nth-child(2){float:right;height: 100%;margin-right: 10px;}
+		.head_part >div:nth-child(2) span{float: left;cursor: pointer;margin-top: 20px;padding-top: 12px;padding-left: 15px;font-size: 15px;width: 75px;height: 30px;-webkit-box-sizing:initial;}
+		**/
+		.head_part >div:nth-child(2){float:right;height: 100%;margin-right: 25px;}
+		
+		.course_class_all{width:100%;height: 340px;}
+		.course_class_all >div{width: 1200px;height: 100%;margin: 0 auto;}
+		.course_class_title{text-align: center;height: 59px;padding: 60px 0px 30px 0px;padding-top: 60px;}
+		.course_class_part{width:100%;height: 135px;}
+		.course_class_single{float:left;width:300px;height: 100%;color:#999999;}
+		.course_class_single >div:nth-child(1){width:100%;height: 60px;text-align: center;}
+		.course_class_single >div:nth-child(1) img{width:60px;}
+		.course_class_single >div:nth-child(2){width:100%;height: 20px;text-align: center;padding-top:5px;padding-bottom: 10px;}
+		.course_class_single >div:nth-child(2) span{font-size: 18px;color:#666666;}
+		.course_class_single >div:nth-child(3){width:221px;height: 35px;font-size: 14px;margin: 0 auto;text-align: center;}
+		
+		.single_advance{float:left;width: 240px;height: 100%;}
+		.single_advance >div:nth-child(1){width:100%;text-align: center;padding-bottom: 5px;}
+		.single_advance >div:nth-child(1) span{font-size: 34px;font-weight: 600;color: #384663;}
+		.single_advance >div:nth-child(2){width:100%;text-align: center;}
+		.single_advance >div:nth-child(2) span{font-size: 14px;}
+		.single_advance >div:nth-child(3){width:100%;text-align: center;}
+		.single_advance >div:nth-child(3) span{font-size: 14px;}
+
+		.single_advance:HOVER {
+			color:#d57f5e !important;
+			cursor: pointer;
+		}
+		
+		.cert_all{float:left;width:160px;height: 100%;}
+		.cert_part{width:100%;height: 55px;background-color: #384663;margin-bottom: 5px;cursor: pointer;}
+		.cert_part_active{background-color: #D5BFAA;color:#384663;}
+		.cert_part img{width:25px;float:left;margin-top: 15px;margin-left: 30px;}
+		.cert_part span{float:left;margin-top: 18px;margin-left: 15px;color:#fff;}
+		.cert_part_active span{color:black;}
+		
+		.all_adv_simple{width:100%;height: 566px;margin-bottom: 10px;}
+		.single_adv_simple{float:left;width:25%;margin-bottom: 10px;}
+		.single_adv_split{padding: 5px;}
+		.single_adv_split >div:nth-child(1){width:100%;margin-bottom: 8px;text-align: center;}
+		.single_adv_split >div:nth-child(1) img{width:100%;}
+		.single_adv_split >div:nth-child(2){width:100%;text-align: center;height: 20px;}
+		.single_adv_split >div:nth-child(2) span{font-size: 15px;}
+		.single_adv_split >div:nth-child(3){width:100%;text-align: center;height: 15px;}
+		.single_adv_split >div:nth-child(3) span{font-size: 12px;}
+		
+		.all_customer_pic{width:100%;height: 279px;}
+		.single_customer_pic{float:left;width:20%;height: 150px;cursor: pointer;}
+		.single_customer_pic1{height: 125px;}
+		.single_customer_pic >div{padding: 15px 10px; border-right: solid 1px #E8E3E3;border-bottom: solid 1px #E8E3E3;}
+		.single_customer_pic >div img{width:100%;}
+		.single_customer_pic2 >div{border-bottom: none;}
+		.all_customer_pic >div:nth-child(5n) >div{border-right: none;}
+		
+		#navigation, #navigation li ul { 
+		list-style-type:none; 
+		} 
+		#navigation { 
+		margin:20px; 
+		} 
+		#navigation li { 
+		float:left; 
+		text-align:center; 
+		position:relative; 
+		z-index: 99;
+		} 
+		#navigation li a:link, #navigation li a:visited { 
+		display:block; 
+		text-decoration:none; 
+		color:#000; 
+		width:85px; 
+		height:60px; 
+		line-height:40px; 
+		border:1px solid #fff; 
+		border-width:1px 1px 0 0; 
+		background:white; 
+		text-align:center;
+		font-size: 15px;
+		} 
+		.common_class{
+			display:block; 
+			text-decoration:none; 
+			width:85px; 
+			height:40px !important; 
+			line-height:40px; 
+			border:1px solid #fff; 
+			border-width:1px 1px 0 0; 
+			text-align:center;
+			font-size: 15px;
+			color:#fff !important; 
+			background:#B79B83 !important; 
+			border-radius:20px;
+			width:107px !important;
+		}
+		.firstmenu{ 
+			color:#000 !important; 
+			background:white !important; 
+			border-radius: 10px;
+		}
+		.firstmenu:HOVER{
+			color:#B79B83 !important; 
+		}
+		
+		#navigation li a:hover { 
+		color:#fff; 
+		background:#ffffff; 
+		} 
+		#navigation li ul li a:hover { 
+			color:#333333; 
+			background:#f2f2f2; 
+		} 
+		#navigation li ul { 
+		display:none; 
+		position:absolute; 
+		top:40px; 
+		left:0; 
+		margin-top:1px; 
+		width:85px; 
+		} 
+		#navigation li ul li ul { 
+		display:none; 
+		position:absolute; 
+		top:0px; 
+		left:85px; 
+		margin-top:0; 
+		margin-left:1px; 
+		width:125px; 
+		} 
+		.mysubmenu{
+			width:168px !important; 	
+			border-top: 2px solid black;
+			top:60px !important;
+		}
+		.mysubmenu >li a{width:160px !important;text-align: left !important;padding-left: 8px;height: 40px !important;}
+		
+		
+		.box-shadow-1{  
+		  -webkit-box-shadow: 3px 3px 3px;  
+		  -moz-box-shadow: 3px 3px 3px;  
+		  box-shadow: 3px 3px 3px;  
+		}  
+		
+		.query_button{width: 160px;cursor:pointer; height: 33px;border: 1px solid #D5BFAA;text-align: center;border-radius: 5px;color: #D5BFAA;padding-top: 12px;}
+		.query_button >span{font-size: 14px;}
+		.query_button:HOVER {
+				background-color: #b79b83;
+				color:white;		
+			}
+		.customer_test{width:688px;margin: 0 auto;height: 100%;}
+		.customer_test >span{float:left;margin: 10px;font-size: 14px;color: #666666;}
+		
+		.bgimagegray{
+		    height: 400px;
+		    background: url(images/bgimg.jpg) no-repeat center center #555d6e;
+		    background-size: 100% auto;
+		    background-attachment: fixed;
+		    position: relative;
+		
+		}
+		.baoming_img{position: absolute;width: 189px !important;height: 241px !important;top:44px;right: -45px;background-color: transparent;display: none;}
+		.common_class:HOVER {
+			background-color: #957960 !important;
+		}
+		.nbs-flexisel-inner{width:1122px;height: 120px;}
+		.nbs-flexisel-item{width: 374px !important;}
+		.nbs-flexisel-item >img{margin-top: 0px;margin-bottom: 0px;}
+		
+		.bar_width{width:100%;height: 35px;text-align: center;padding-top: 10px;border-bottom: 1px solid white;}
+		.bar_width img{width:26px;cursor: pointer;}
+		.2bar_img{position: absolute;right: 50px;top: 52px;}
+		.course_advs{height: 100%;margin-left: auto;margin-right: auto;width: 1200px;}
+		.link_class{float:left;width:43px;height: 43px;background-color: #757575;filter:alpha(opacity=90); -moz-opacity:0.9; -khtml-opacity: 0.9; opacity: 0.9;border-radius:50%;}
+		.link_class:nth-child(n+2){margin-left: 20px;}
+		.link_class img{float: left;margin-top: 9px;margin-left: 7px;}
+		.link_class:HOVER {
+			background-color: #d57f5e;}
+		.want_know{border: 1px solid #D57F5E;height: 40px;width:130px;text-align: center;margin-left: 99px;border-radius:5px;color:#D57F5E;cursor: pointer;}
+		.want_know:HOVER {
+			background-color: #D57F5E;
+			color:white !important;
+		}
+		.type_class{padding-bottom: 13px;font-size: 14px;}
+		.customer_test_more:HOVER {color:red;cursor: pointer;}
+	</style>
+	<script type="text/javascript">
+		function openWindow(url){
+			window.open(url);
+		}
+		function displaySubMenu(li) { 
+			var subMenu = li.getElementsByTagName("ul")[0]; 
+			subMenu.style.display = "block"; 
+		} 
+		function hideSubMenu(li) {
+			var subMenu = li.getElementsByTagName("ul")[0]; 
+			subMenu.style.display = "none"; 
+		} 
+		$(function(){
+			$(".head_part >div:nth-child(2) span").click(function(){
+				$(".head_part >div:nth-child(2) span").removeClass("show_class");
+				$(this).toggleClass("show_class");
+			});
+			$("#telpshow").click(function(){
+				$("#telphoneinfo").hide();
+				$("#telphoneimg").show();
+				
+			});
+			$("#telphoneimg").click(function(){
+				$("#telphoneinfo").show();
+				$(this).hide();
+			});
+		    $("#flexiselDemo3").flexisel({
+		        visibleItems: 3,
+		        itemsToScroll: 1,         
+		        autoPlay: {
+		            enable: true,
+		            interval: 5000,
+		            pauseOnHover: true
+		        }        
+		    });
+			
+		    $(".single_customer_pic >div img").mouseover(function(){
+		    	 var srcval = $(this).attr("src") ;
+		    	 if(srcval.indexOf("_normal")>0){
+		    		 $(this).attr("src",srcval.substring(0,srcval.indexOf("_normal"))+".png");
+		    	 }else{
+		    		 $(this).attr("src",srcval.substring(0,srcval.indexOf(".png"))+"_normal.png");
+		    	 }
+		    }).mouseout(function(){
+		    	var srcval = $(this).attr("src") ;
+		    	if(srcval.indexOf("_normal")<0){
+		    		$(this).attr("src",srcval.substring(0,srcval.indexOf(".png"))+"_normal.png");
+		    	}
+		    	/**
+		    	if(srcval.indexOf("sogou")>0){
+		    		$(this).attr("src","images/sogou.png");
+		    	}**/
+		    });
+		    
+		    //添加鼠标移动事件
+		    $(".course_class_single >div img").mouseover(function(){
+		    	 var srcval = $(this).attr("src") ;
+		    	 $(this).attr("src",srcval.substring(0,srcval.indexOf(".png"))+"_normal.png");
+		    	 
+		    }).mouseout(function(){
+		    	var srcval = $(this).attr("src") ;
+		    	if(srcval.indexOf("_normal")>0){
+		    		 $(this).attr("src",srcval.substring(0,srcval.indexOf("_normal"))+".png");
+		    	}
+		    });
+		    $(".cert_part").mouseover(function(){
+		    	 $(".cert_part").removeClass("cert_part_active")
+		    	 $(this).addClass("cert_part_active");
+		    	 
+		    }).mouseout(function(){
+		    	$(".cert_part").removeClass("cert_part_active")
+		    });
+		  //添加鼠标移动事件
+		    $(".single_advance").mouseover(function(){
+		    	 $(this).find("div span").css("color","#d57f5e");
+		    	 
+		    }).mouseout(function(){
+		    	 $(this).find("div span").css("color","black");
+		    	 $(this).find("div:nth-child(1) span").css("color","#384663");
+		    });
+		    
+		    $(".baoming").mouseover(function(){
+		    	 $(".baoming_img").show();
+		    	 
+		    }).mouseout(function(){
+		    	 $(".baoming_img").hide();
+		    });
+		    
+		    $(".bar_width").mouseover(function(){
+		    	var srcval = $(this).find("img").attr("src") ;
+		    	if(srcval == 'images/wx_logo_small.png'){
+		    		$("#2barimage").show();
+		    	}
+		    	
+		    	 $(this).find("img").attr("src",srcval.substring(0,srcval.indexOf(".png"))+"_normal.png");
+		    }).mouseout(function(){
+		    	var srcval = $(this).find("img").attr("src") ;
+		    	if(srcval == 'images/wx_logo_small_normal.png'){
+		    		$("#2barimage").hide();
+		    	}
+		    	if(srcval.indexOf("_normal")>0){
+		    		 $(this).find("img").attr("src",srcval.substring(0,srcval.indexOf("_normal"))+".png");
+		    	}
+		    });
+		    
+		    $(".course_advs >img").mouseover(function(){
+		    	var srcval = $(this).attr("src") ;
+		    	 $(this).attr("src",srcval.substring(0,srcval.indexOf(".png"))+"_normal.png");
+		    }).mouseout(function(){
+		    	var srcval = $(this).attr("src") ;
+		    	if(srcval.indexOf("_normal")>0){
+		    		 $(this).attr("src",srcval.substring(0,srcval.indexOf("_normal"))+".png");
+		    	}
+		    });
+		    
+		    $("#wx2bar_logo").mouseover(function(){
+		    	$("#wx2bar").show();
+		    }).mouseout(function(){
+		    	$("#wx2bar").hide();
+		    });
+		    
+		})
+	</script>
+  </head>
+  
+  <body>
+  	<div>
+   	<header style="position: relative;z-index: 10;transition: transform 0.5s ease 0s;height: 81px;">
+   	  <div class="head_part box-shadow-1" style="position: fixed;left:0px;top: 0px;background-color: #fff;">
+    	<div>
+    		<img src="pic/logo1.png" />
+    	</div>
+    	 <div>
+    	 	<ul id="navigation"> 
+				<li> 
+				<a class="firstmenu" href="index.html">公司首页</a> 
+				</li> 
+				<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"> 
+				<a class="firstmenu" href="index.html">课程分类</a> 
+				<ul class="mysubmenu"> 
+				<li><a href="courseclass/service_ttt.html">TTT培训</a></li> 
+				<li><a href="courseclass/service_wktwo.html">WKTwo翻转课堂</a></li> 
+				<li><a href="courseclass/service_manage.html">TMT培训管理</a></li> 
+				<li><a href='index.html'>ACI认证</a></li> 
+				<li><a href='index.html'>企业内训</a></li> 
+				</ul> 
+				</li> 
+				<li> 
+				<a class="firstmenu" href="teacherintro/main.html">导师团队</a> 
+				</li> 
+				<li> 
+					<a class="firstmenu" href='index.html'>行业优势</a> 
+				</li>
+				<li  onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"> 
+					<a class="firstmenu" href='index.html'>客户见证</a> 
+					<ul class="mysubmenu"> 
+					<li><a href='index.html'>金融行业</a></li> 
+					<li><a href='index.html'>电力行业</a></li> 
+					<li><a href='index.html'>制造行业</a></li> 
+					<li><a href='index.html'>服务行业</a></li> 
+					<li><a href='index.html'>通讯行业</a></li> 
+					<li><a href='index.html'>个人公开课</a></li> 
+					<li><a href='index.html'>更多</a></li>
+					</ul>
+				</li> 
+				<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"> 
+					<a class="firstmenu" href='index.html'>考证服务</a> 
+					<ul class="mysubmenu"> 
+					<li><a href='index.html'>证书介绍</a></li> 
+					<li><a href='index.html'>证书分类</a></li> 
+					<li><a href='index.html'>如何考证</a></li> 
+					<li><a href='index.html'>网校进修</a></li> 
+					</ul>
+				</li> 
+				<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"> 
+					<a class="firstmenu" href='index.html'>关于我们</a> 
+					<ul class="mysubmenu"> 
+					<li><a href="aboutus/company_future.html">愿景使命价值观</a></li> 
+					<li><a href="aboutus/founder.html">创始人</a></li> 
+					<li><a href="aboutus/honor.html">荣誉资质</a></li> 
+					<li><a href="aboutus/link_us.html">联系我们</a></li> 
+					<li><a href="aboutus/join_us.html">加入我们</a></li> 
+					</ul>
+				</li>
+				<li> 
+					<a class="firstmenu" href='index.html'>合作机构</a> 
+				</li>
+				<li style="margin-right: 50px;"> 
+					<a class="firstmenu" href='index.html'>新闻动态</a> 
+				</li>
+				<li style="position: relative;"> 
+					<a class="baoming common_class" href='index.html'>报名入口</a>
+					<img src="images/top2code.png" class="baoming_img"/> 
+				</li>     
+			</ul> 
+    	 
+    	 </div>
+    </div>
+   	
+   	</header>
+    <div style="width:100%;height: auto;min-width: 1200px;">
+    	<img src="pic/banner.png" style="width:100%;display: none;" />
+    	
+    	<div class="center">
+		 <div class="center_top">
+		  <!-- <==========================================================> -->
+						  <!-- 轮播图开始区域 -->
+		 <!-- <div id="bannar"> -->
+			   <div class="content_middle">
+				  <div class="common_da">
+	
+						<a class="common btnLeft"href="javascript:;"></a>
+						<a class="common btnRight"href="javascript:;"></a>
+	
+				  </div>
+		                       		
+		                       	
+				   <ul>
+					  <li style="background:url(images/banner.jpg) no-repeat center center;opacity: 100;filter: alpha(opacity=1);"></li>
+					  <li style="background:url(images/banner1.jpg) no-repeat center center;"></li>
+					  <li style="background:url(images/banner2.jpg) no-repeat center center;"></li>
+				   </ul>
+					<div class="table">
+						<a class="small_active"href="javascript:;">TTT培训</a>
+						<a href="javascript:;">企业内训</a>
+						<a href="javascript:;">翻转课堂</a>
+					</div>
+			   </div>    	  
+		 </div>    
+	 </div>
+    </div>
+    <div class="course_class_all">
+    	<div>
+			 <div class="course_class_title">
+			 	<div style="width:100%;text-align: center;height: 43px;"><span style="font-size: 26px;">课程分类</span></div>
+			 	<div style="width:100%;text-align: center;height: 25px;"><span style="font-size: 12px;color:#cccccc;">CLASSIFICATION OF COURSE</span></div>
+			 </div>
+			 <div class="course_class_part">
+			 	<div class="course_class_single">
+			 		<div>
+			 			<img src="images/course_class1.png"/>
+			 		</div>
+			 		<div>
+			 			<span>PRESENT</span>
+			 		</div>
+			 		<div>
+			 			TTT培训-融合PTT、TTT培训实战精华，上海虹桥线下特训营
+			 		</div>
+			 	</div>
+			 	<div class="course_class_single">
+			 		<div>
+			 			<img src="images/course_class2.png"/>
+			 		</div>
+			 		<div>
+			 			<span>DESIGN</span>
+			 		</div>
+			 		<div>
+			 			WKTtwo翻转课堂-123ke网手把手教你制作微课，传播您的思想
+			 		</div>
+			 	</div>
+			 	<div class="course_class_single">
+			 		<div>
+			 			<img src="images/course_class3.png"/>
+			 		</div>
+			 		<div>
+			 			<span>MANGEMENT</span>
+			 		</div>
+			 		<div>
+			 			TMT培训管理-成长型企业培训体系搭建，培养学习项目运营专家
+			 		</div>
+			 	</div>
+			 	<div class="course_class_single">
+			 		<div>
+			 			<img style="width:52px;" src="images/course_class4.png"/>
+			 		</div>
+			 		<div>
+			 			<span>CERTIFICATE</span>
+			 		</div>
+			 		<div>
+			 			ACI认证-美国认证协会权威证书 &nbsp;&nbsp;有效从业资格证明，创造职场传奇
+			 		</div>
+			 	</div>
+			 </div>    	
+    	</div>
+    </div>
+    <div style="width:100%;height: 320px;background-color: #F2F2F1;">
+    	<div style="width:1200px;margin: 0 auto;height: 100%;">
+			 <div class="course_class_title">
+			 	<div style="width:100%;text-align: center;height: 43px;"><span style="font-size: 26px;">行业优势</span></div>
+			 	<div style="width:100%;text-align: center;height: 25px;"><span style="font-size: 12px;color:#cccccc;">INDUSTRY ADVANTAGE</span></div>
+			 </div>    		
+    		<div style="width: 100%;height: 135px;">
+    			<div class="single_advance">
+    				<div><span>业内唯一</span></div>
+    				<div><span>教练系统</span></div>
+    				<div><span>PDMC体系课程</span></div>
+    			</div>
+    			<div class="single_advance">
+    				<div><span>O2O</span></div>
+    				<div><span>翻转课堂</span></div>
+    				<div><span>123ke网贴身服务</span></div>
+    			</div>
+    			<div class="single_advance">
+    				<div><span>ACI评定</span></div>
+    				<div><span>资格认证</span></div>
+    				<div><span>开辟广阔培训市场</span></div>
+    			</div>
+    			<div class="single_advance">
+    				<div><span>权威证书</span></div>
+    				<div><span>乐训证明</span></div>
+    				<div><span>立即充实讲师背景</span></div>
+    			</div>
+    			<div class="single_advance">
+    				<div><span>经纪服务</span></div>
+    				<div><span>工作机会</span></div>
+    				<div><span>推荐讲师经纪签约</span></div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+	<div style="width:100%;height: 500px;">
+		<div style="width:100%;height: 359px;">
+			<div style="float: left;width:20%;height: 100%;">
+			</div>
+			<div style="float: left;width:80%;height: 100%;position: relative;">
+				<img src="images/greateman.png" style="position: absolute;left:-82px;top:-40px;width:336px;" />
+				<div style="padding-left: 110px;height: 100%;">
+					<div style="background-color:#384663;height: 100%;width:100%;">
+						<div style="padding-left: 200px;height: 300px;width:600px;padding-top: 60px;">
+							<div style="width:100%;height: 35px;position: relative;">
+								<div style="border-bottom: 1px solid #d5bfaa;width:91px;position: absolute;top: 8px;left: -101px;"></div>
+								<span style="font-size: 24px;color: #d5bfaa;">练荣斌</span>
+							</div>
+							<div style="width:100%;height: 30px;margin-bottom: 30px;"><span style="font-size: 14px;color: #999999;">TTT培训师/123Ke创始人</span></div>
+							<div style="width:100%;height: 67px;font-size: 14px;color: #c3c3c3;margin-bottom: 30px;line-height: 25px;">
+								实战著名TTT训练导师，乐训云商学院总教练，【微课兔】翻转课堂总编导,浙江大学、上海交大、西安大学，时代光华特聘讲师、美国认证协会ACI培训师资格认证考评导师......
+							</div>
+							<div style="width:100%;height: 30px;">
+								<div style="border: 2px solid  #b79b83;height: 40px;width:130px;text-align: center;"><span style="color:#b79b83;font-size: 14px;float:left;margin-top: 10px;margin-left: 36px;">了解详情</span></div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="width: 1122px;height: 220px;margin: 0 auto;">
+			<ul id="flexiselDemo3">
+			    <li><img src="images/teacher_intro5.jpg" /></li>
+			    <li><img src="images/teacher_intro3.jpg" /></li>
+			    <li><img src="images/teacher_intro4.jpg" /></li>
+			</ul>  
+		</div>
+	</div>    
+	<div style="width:100%;height: 320px;">
+		<div style="margin: 60px auto;width:1200px;height: 100%;">
+			  <div class="cert_all">
+			  		<div class="cert_part cert_part_active">
+			  			<img src="images/certintro_01.png" /><span>证书介绍</span>
+			  		</div>
+			  		<div class="cert_part">
+			  			<img src="images/certintro_02.png" /><span>证书分类</span>
+			  		</div>
+			  		<div class="cert_part">
+			  			<img src="images/certintro_03.png" /><span>如何考证</span>
+			  		</div>
+			  		<div class="cert_part">
+			  			<img src="images/certintro_04.png" /><span>网校进修</span>
+			  		</div>
+			  		<div class="cert_part">
+			  			<img src="images/certintro_05.png" /><span>证书查询</span>
+			  		</div>
+			  </div>
+			  <div style="float:left;height: 100%;width: 1000px;padding-left: 30px;color:#384663;">
+			  		<div class="certintro_class_01" style="width:100%;height: 100%;">
+			  			<div style="width:600px;height: 100%;float:left;">
+							   <div style="width:100%;height: 81px;">
+				  				<div style="width:100%;height: 43px;text-align: center;">
+				  					<span style="font-size: 26px;">认证考试</span>
+				  				</div>
+				  				<div style="width:100%;height: 25px;text-align: center;">
+				  					<span style="font-size: 12px;color:#cccccc;">CERTIFICATION TEST</span>
+				  				</div>			  				
+					  			</div>
+					  			<div style="width:100%;height: 40px;margin-bottom: 20px;">
+					  				<div style="width:100%;height: 25px;text-align: left;">
+					  					<span style="font-size: 18px;color:#b79b83">证书介绍</span>
+					  				</div>
+					  				<div style="width:100%;height: 15px;text-align: left;">
+					  					<span style="font-size: 10px;color: #cccccc;">THE CERTIFICATE IS INTRODUCED</span>
+					  				</div>
+					  			</div>
+					  			<div style="width:100%;height: 97px;line-height: 22px;font-size: 14px;color:#999999">
+					  				美国认证协会(American Certification Institute)坐落于美国加州洛杉矶埃尔蒙特市
+					  				泰斯达大道9460号，是由美国哈佛大学、德州大学、耶鲁大学、加州大学、杜克大学、森坦
+					  				那瑞商学院等美国数十个著名院校......
+					  			</div>
+					  			<div class="query_button">
+					  				<span>查看详情&nbsp;></span>
+					  			</div>			  			
+			  			</div>
+			  			<div style="width:400px;height: 100%;float:left;">
+			  				<img src="images/certificate_book.png" style="width:409px;" />
+			  			</div>
+			  		</div>
+			  	
+			  	
+			  </div>
+			  
+		</div>
+	</div>
+	<div style="width: 100%;height: 875px;">
+		<div style="width:1200px;height: 100%;margin: 0 auto;color:#384663;">
+	  		<div class="course_class_title">
+			 	<div style="width:100%;text-align: center;height: 43px;"><span style="font-size: 26px;">客户见证</span></div>
+			 	<div style="width:100%;text-align: center;height: 25px;"><span style="font-size: 12px;color:#cccccc;">CUSTOMER TESTIMONIALS</span></div>
+			 </div> 
+			<div style="width:100%;height: 40px;">
+				<div class="customer_test">
+					<span>金融业客户见证</span>
+					<span>电力行业客户见证</span>
+					<span>制造行业客户见证</span>
+					<span>服务行业客户见证</span>
+					<span>品牌公开课见证</span>
+					<span class="customer_test_more">更多</span>
+				</div>
+			</div>
+			<div class="all_adv_simple">
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons09.jpg"/>
+						</div>
+						<div>
+							<span>第25期乐训公开课</span>
+						</div>
+						<div>
+							<span>2017-05-18</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons10.jpg"/>
+						</div>
+						<div>
+							<span>中国建设银行山东分行</span>
+						</div>
+						<div>
+							<span>2014-05-05</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons03.jpg"/>
+						</div>
+						<div>
+							<span>江苏银行扬州分行内训师培训</span>
+						</div>
+						<div>
+							<span>2011-06-28</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons04.jpg"/>
+						</div>
+						<div>
+							<span>中国移动四川分公司</span>
+						</div>
+						<div>
+							<span>2015-07-18</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons05.jpg"/>
+						</div>
+						<div>
+							<span>中国国旅上海分公司</span>
+						</div>
+						<div>
+							<span>2014-03-06</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons06.jpg"/>
+						</div>
+						<div>
+							<span>中国电信陕西公司微课制作</span>
+						</div>
+						<div>
+							<span>2016-4-28</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons07.jpg"/>
+						</div>
+						<div>
+							<span>ACI注册礼仪培训师</span>
+						</div>
+						<div>
+							<span>2013-03-07</span>
+						</div>
+					</div>
+				</div>
+				<div class="single_adv_simple">
+					<div class="single_adv_split">
+						<div>
+							<img src="images/customer_persons08.jpg"/>
+						</div>
+						<div>
+							<span>乐训第23期公开课</span>
+						</div>
+						<div>
+							<span>2017-04-26</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="width:100%;height: 44px;text-align: center;">
+				<div class="query_button" style="margin: 0 auto;">
+	  				<span>查看更多&nbsp;&gt;</span>
+	  			</div>
+			</div>
+		</div>
+	</div>
+	<div style="width:100%;height: 359px;">
+		<div style="float: left;width:80%;height: 100%;">
+			<div style="height: 100%;">
+				<div style="background-color:#384663;height: 100%;width:100%;">
+					<div style="padding-left: 200px;height: 300px;width:744px;padding-top: 60px;">
+						<div style="width:100%;height: 35px;text-align: center;"><span style="font-size: 25px;color: #D4805E;">关于我们</span></div>
+						<div style="width:100%;height: 30px;margin-bottom: 30px;text-align: center;"><span style="font-size: 16px;color: #364660;">ABOUT US</span></div>
+						<div style="width:100%;height: 67px;font-size: 16px;color: #BCBCBC;margin-bottom: 30px;">
+							上海博训企业管理顾问有限公司，是美国认证协会ACI官方授权的注册国际企业培训师与国际注册职业培训师资格认证培训与考试评定机构，
+							主要负责培训师资格认证的宣传、培训辅导、认证测评等事宜......
+						</div>
+						<div style="width:100%;height: 30px;">
+							<div style="border: 1px solid #D4805E;border-radius:8px;padding: 11px 25px;height: 30px;width:120px;margin: 0 auto;"><span style="color:#D4805E;font-size: 18px;float:left;margin-left: 19px;">查看详情  ></span></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div style="float: left;width:20%;height: 100%;position: relative;">
+			<img src="images/platform.png" style="position: absolute;left:-71px;top:-40px;width:306px;">
+		</div>
+	</div>
+	<div style="width:100%;height: 402px;background-color: #F2F2F2;display: none;">
+		<div style="width:1100px;margin: 0 auto;height: 100%;">
+	  		<div class="course_class_title">
+			 	<div style="width:100%;text-align: center;height: 43px;"><span style="font-size: 26px;" >新闻资讯</span></div>
+			 	<div style="width:100%;text-align: center;height: 25px;"><span style="font-size: 12px;color:#cccccc;">NEWS</span></div>
+			 </div>		
+	  		<div style="width:100%;height: 170px;">
+	  			<div style="float:left;width: 300px;height: 100%;">
+	  				<img src="images/news_question.png" style="width:100%" />
+	  			</div>
+	  			<div style="float:left;width: 450px;height: 150px;padding-left: 25px;padding-top: 20px;">
+	  				<div style="width:100%;height: 50px;">
+	  					<span style="font-size: 22px;">五月乐训君与您相约北京！</span>
+	  				</div>
+	  				<div style="width:400px;font-size: 14px;color: #7B7A7A;">
+		  				两天培训师呈现互动控场技能实战训练，两天培训师ADDIE课程设计与课件
+		  				制作实操训练......
+	  				</div>
+	  			</div>
+	  			<div style="float:left;height: 80px;width: 200px;border-left: 1px solid #D4805E;margin-top: 20px;">
+	  					<div style="padding-left: 30px;height: 100%;width: 170px;">
+	  						<div style="width:100%;height: 32px;margin-bottom: 5px;"><span style="color:#D4805E;font-size: 25px;font-weight: 600;">05-18</span></div>
+	  						<div style="width:100%;height: 25px;"><span style="color:#D4805E;font-size: 14px;">2017</span></div>
+	  					</div>
+	  			</div>
+	  		</div>
+	  		<div style="width: 155px;height: 25px;border: 1px solid #D4805E;padding-top: 9px;border-radius: 5px;color: #D4805E;margin: 0 auto;text-align: center;">
+	  				<span>查看详情&nbsp;&gt;</span>
+	  		</div>	
+		</div>
+	</div>
+	<div class="floor floor_news">
+		<div class="floor_title">
+			<h3>新闻资讯</h3>
+			<p>NEWS</p>
+		</div>
+		<div class="floor_news_list wrap clearfix ">
+			<div class="fl clearfix new_info animated fadeInRight" style="display: block;">
+				<a href='index.html'>
+					<img class="fl img" src="images/floor_news_img.jpg" alt="">
+				</a>
+				<h2 class="lr1"><a href='index.html'>五月乐训君与您相约北京！</a></h2>
+				<p class="lr2">两天培训师呈现互动控场技能实战训练，两天培训师ADDIE课程设计与课件
+		  				制作实操训练......</p>
+			</div>
+			<div class="fl news_date animated fadeInLeft" style="display: block;">
+				<h3>08-15</h3>
+				<p>2016</p>
+			</div>
+			<i class="fr iconfont animated"></i>
+		</div>
+		<a href="http://www.123ke.cn/stn-80081333.html" class="more_btn animated fadeInUp" style="display: block;">更多</a>
+	</div>
+	<div style="width:100%;height: 428px;position: relative;">
+		<div id="telphoneinfo" style="z-index:999;width: 181px;height: 85px;position: absolute;right: 30px;top: -41px;background-color: #384663;border-radius:5px;">
+			<span id="telpshow" style="color: white;position: absolute;right: 12px;top: 5px;cursor: pointer;">X</span>
+			<span style="float:left;margin-left: 15px;margin-top: 31px;"><img src="images/telphone.png" style="width:21px;" /></span>
+			<span style="float:left;color:white;margin-left: 10px;margin-top: 29px;font-size: 17px;">400-666-0708</span>
+		</div>
+		<div id="telphoneimg" style="z-index:999;width: 50px; height: 50px; position: absolute; right: 30px; top: 15px;border-radius: 5px;background-color: #384663;display: none;">
+			<img src="images/telphone.png" style="width: 26px;float: left;margin-top: 12px;margin-left: 13px;cursor: pointer;border-radius: 5px;"/>
+		</div>
+		<div style="position: absolute;right: 30px;top: 80px;border-radius:5px;width: 50px;height: 184px;background-color:#B79B84;">
+			<div class="bar_width">
+				<img src="images/qq_logo_small.png"/>
+			</div>
+			<div class="bar_width">
+				<img src="images/wx_logo_small.png" />
+			</div>
+			<div class="bar_width">
+				<img src="images/wb_logo_small.png" />
+			</div>
+			<div class="bar_width">
+				<img src="images/top_logo_small.png" />
+			</div>
+			<img src="images/bar.png" id="2barimage" style="position: absolute;right: 50px;top: 52px;display: none;"/>
+		</div>
+		<div style="width:1200px;height: 100%;margin: 0 auto;">
+	  		<div class="course_class_title">
+			 	<div style="width:100%;text-align: center;height: 43px;"><span style="font-size: 26px;">合作机构</span></div>
+			 	<div style="width:100%;text-align: center;height: 25px;"><span style="font-size: 12px;color:#cccccc;">NEWS AND INFORMATION</span></div>
+			 </div>	
+	  		<div class="all_customer_pic" onclick="openWindow('http://www.lettt.cn/archives/portfolio-category/kehu')">
+  				<div class="single_customer_pic single_customer_pic1">
+  					<div>
+  						<img src="images/sogou_normal.png"/>
+  					</div>
+  				</div>
+	  			<div class="single_customer_pic single_customer_pic1">
+  					<div>
+  						<img src="images/chinatelecom_normal.png"/>
+  					</div>
+  				</div>
+  				<div class="single_customer_pic single_customer_pic1">
+  					<div>
+  						<img src="images/mingshengbank_normal.png"/>
+  					</div>
+  				</div>
+  				<div class="single_customer_pic single_customer_pic1">
+  					<div>
+  						<img src="images/sony_normal.png"/>
+  					</div>
+  				</div>
+  				<div class="single_customer_pic single_customer_pic1">
+  					<div>
+  						<img src="images/auto_normal.png"/>
+  					</div>
+  				</div>	
+	  			<div class="single_customer_pic single_customer_pic2">
+  					<div>
+  						<img src="images/chinamobile_normal.png"/>
+  					</div>
+  				</div>	
+  				<div class="single_customer_pic single_customer_pic2">
+  					<div>
+  						<img src="images/anjuke_normal.png"/>
+  					</div>
+  				</div>	
+  				<div class="single_customer_pic single_customer_pic2">
+  					<div>
+  						<img src="images/snda_normal.png"/>
+  					</div>
+  				</div>	
+  				<div class="single_customer_pic single_customer_pic2">
+  					<div>
+  						<img src="images/trainbuild_normal.png"/>
+  					</div>
+  				</div>	
+  				<div class="single_customer_pic single_customer_pic2">
+  					<div>
+  						<img src="images/stategrid_normal.png"/>
+  					</div>
+  				</div>		
+	  		</div>
+		</div>
+	</div>
+    <div style="width:100%;height: 90px;background-color: #D57F5E;">
+    	<div class="course_advs">
+    		<img onclick="openWindow('https://www.123ke.cn')" style="float:left;margin-top: 5px;cursor: pointer;" src="pic/maologo.png" />
+    		<span onclick="openWindow('http://www.lettt.cn')" style="float:left;margin-left: 100px;margin-top: 15px;font-size: 28px;font-weight: 600;color:white;cursor: pointer;">乐训同盟会</span>
+    		<span onclick="openWindow('http://www.cnttt.cn')" style="float:left;margin-left: 100px;margin-top: 15px;font-size: 28px;font-weight: 600;color:white;cursor: pointer;">CNTTT</span>
+    		<span onclick="openWindow('https://m.qlchat.com/live/240000208023439.htm')" style="float:left;margin-left: 100px;margin-top: 15px;font-size: 28px;font-weight: 600;color:white;cursor: pointer;">直播间</span>
+    		<img onclick="openWindow('http://study.163.com/u/letttcn')" style="float:left;margin-top: 18px;margin-left: 100px;cursor: pointer;" src="pic/cloud_course.png" />
+    	</div>
+    </div>
+    <div style="width:100%;height: 400px;background-color:#252C36;">
+    	<div style="margin: 0 auto;width:1200px;height: 100%;">
+    		<div style="float:left;width:500px;color:#637394;">
+	    		<div style="padding-top: 33px;padding-bottom: 30px;">
+	    			<span style="font-size: 20px;">上海市博训企业管理有限公司</span>
+	    		</div>
+	    		<div class="type_class">公司地址：上海市虹桥商务区伴亭路488号磊鑫大厦201-202室</div>
+	    		<div class="type_class">邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:   &nbsp;43615235@qq.com</div>
+	    		<div class="type_class">邮编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:   &nbsp;201615</div>
+	    		<div class="type_class">客服电话：4006660708</div>
+	    		<div style="padding-top: 37px;position: relative;">
+	    			<img id="wx2bar" src="images/wx2bar.png" style="position: absolute;top:-128px;left:22px;display: none;"/>
+	    			<div class="link_class"><a><img id="wx2bar_logo" src="images/wx_logo_small.png" /></a></div>
+	    			<div class="link_class"><a href="http://weibo.com/43615235" target="_blank"><img src="images/wb_logo_small.png" /></a> </div>
+	    			<div class="link_class"><a href="http://t.qq.com/lianrongbin" target="_blank"><img src="images/qq_logo_small.png" /></a></div>
+	    		</div>
+	    		
+	    	</div>
+	    	<div style="float:left;width:300px;color:#637394;">
+	    		<div style="padding-top: 33px;padding-bottom: 30px;">
+	    			<span style="font-size: 20px;">快速导航</span>
+	    		</div>
+	    		<div class="type_class">
+	    			课程分类
+	    		</div>
+	    		<div class="type_class">
+	    			导师团队
+	    		</div>
+	    		<div class="type_class">
+	    			行业优势
+	    		</div>
+	    		<div class="type_class">
+	    			客户见证
+	    		</div>
+	    		<div class="type_class">
+	    			考证服务
+	    		</div>
+	    		<div class="type_class">
+	    			关于我们
+	    		</div>
+	    		<div class="type_class">
+	    			合作机构
+	    		</div>
+	    		<div class="type_class">
+	    			新闻动态
+	    		</div>
+	    	</div>
+	    	<div style="float:left;margin-left: 20px;">
+	    		<div style="padding-top: 20px;">
+	    			<img src="images/member_card.png"/>
+	    		</div>
+	    		<div>
+	    			<div class="want_know" onclick="openWindow('https://www.123ke.cn/viplevel/94576618.html')"><span style="font-size: 14px;float:left;margin-top: 10px;margin-left: 36px;">我想了解</span></div>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
+    <div style="width:100%;height: 60px;background-color: #1C232D;">
+    	<div style="margin: 0 auto;width:1200px;">
+    		<div style="padding-top: 22px;">
+    			<span style="color:#637394;">Powered by LETTT and 练荣斌老师</span>
+    		</div>
+    	</div>
+    </div>
+    </div>
+  </body>
+</html>
